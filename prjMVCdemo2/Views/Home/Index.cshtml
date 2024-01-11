@@ -1,11 +1,11 @@
-﻿@{
+﻿@model prjWebDemo.Models.CCustomer
+@{
     ViewBag.Title = "Home Page";
 }
 
 <main>
     <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="title">ASP.NET</h1>
-        <h2>歡迎登入系統</h2>
+        <h2>歡迎 @Model.fName [@Model.fEmail] 登入系統</h2>
         <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
     </section>
 

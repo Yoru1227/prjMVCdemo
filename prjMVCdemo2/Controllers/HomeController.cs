@@ -1,4 +1,5 @@
-﻿using prjMVCdemo2.ViewModels;
+﻿using prjMVCdemo2.Models;
+using prjMVCdemo2.ViewModels;
 using prjWebDemo.Models;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,7 @@ namespace prjMVCdemo2.Controllers
             {
                 if(c.fPassword.Equals(vm.txtPassword))
                 {
+                    Session[CDictionary.SK_LOGINED_USER] = c;
                     return RedirectToAction("Index");
                 }
             }
@@ -29,7 +31,10 @@ namespace prjMVCdemo2.Controllers
         }
         public ActionResult Index()
         {
-            return View();
+            CCustomer c = Session[CDictionary.SK_LOGINED_USER] as CCustomer;
+            if (c == null)
+                return RedirectToAction("Login");
+            return View(c);
         }
 
         public ActionResult About()
