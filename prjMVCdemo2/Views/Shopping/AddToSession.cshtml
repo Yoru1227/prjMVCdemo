@@ -1,0 +1,41 @@
+﻿@model prjMVCdemo2.tProduct
+
+@{
+    ViewBag.Title = "AddToSession";
+}
+
+<h2>AddToCart</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            輸入購買數量
+            <input type="hidden" name="txtFId" value="@ViewBag.FID" />
+            <div class="col-md-10">
+                @Html.TextBox("txtCount", "1", new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="購買" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("取消", "List")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

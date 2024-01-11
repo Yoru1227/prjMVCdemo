@@ -1,0 +1,35 @@
+﻿@model prjWebDemo.Models.CCustomer
+
+<!DOCTYPE html>
+
+<body>
+    <div>
+        <h2>修改客戶作業</h2>
+        <form method="post">
+            <div hidden>
+                <input type="text" name="fId" value="@Model.fId" />
+            </div>
+            <div>
+                <label for="fName">姓名</label>
+                <input type="text" name="fName" value="@Model.fName" />
+            </div>
+            <div>
+                <label for="fPhone">電話</label>
+                <input type="text" name="fPhone" value="@Model.fPhone" />
+            </div>
+            <div>
+                <label for="fEmail">電子信箱</label>
+                <input type="text" name="fEmail" value="@Model.fEmail" />
+            </div>
+            <div>
+                <label for="fAddress">地址</label>
+                <input type="text" name="fAddress" value="@Model.fAddress" />
+            </div>
+            <div>
+                <label for="fPassword">密碼</label>
+                <input type="text" name="fPassword" value="@Model.fPassword" />
+            </div>
+            <input type="submit" name="submit" value="ok" />
+        </form>
+    </div>
+</body>

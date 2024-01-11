@@ -1,0 +1,77 @@
+﻿@model IEnumerable<prjMVCdemo2.Models.CShoppingCartItem>
+
+@{
+    ViewBag.Title = "CartView";
+}
+
+<h2>檢視購物車</h2>
+
+<p>
+    @Html.ActionLink("結帳", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            序號
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.product.fName)
+        </th>
+        <th>
+            圖片
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.count)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.price)
+        </th>
+        <th></th>
+    </tr>
+
+    @{
+        int count = 0;
+        decimal sum = 0;
+        decimal tax = 0;
+        decimal pay = 0;
+        foreach (var item in Model)
+        {
+            count++;
+            sum += item.total;
+            tax += item.total;
+            <tr>
+                <td>
+                    @count
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.product.fName)
+                </td>
+                <td>
+                    <img src="~/Images/@item.product.fImagePath" alt="Alternate Text" width="80px" height="80px" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.count)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.total)
+                </td>
+                <td>
+                    @Html.ActionLink("刪除", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+        tax = sum * 0.05M;
+        pay = sum + tax;
+    }
+</table>
+<ul class="list-group">
+    <li class="list-group-item">交易金額 : @sum.ToString("###,###,##0")元</li>
+    <li class="list-group-item">稅　　額 : @tax.ToString("###,###,##0")元</li>
+    <li class="list-group-item">應付金額 : @pay.ToString("###,###,##0")元</li>
+</ul>

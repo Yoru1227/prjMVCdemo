@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "ShowCountBySession";
+}
+
+<h2>ShowCount</h2>
+@using (Html.BeginForm())
+{
+    <p>@ViewBag.Count</p>
+    <input type="submit" name="submit" value="Count++" />
+}
+
+

@@ -1,0 +1,63 @@
+﻿
+@using prjWebDemo.Models
+@model List<CCustomer>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>List</title>
+</head>
+<body>
+    <div> 
+        <h2>客戶資料</h2>
+        <div>
+            @using (Html.BeginForm())
+            {
+                @:關鍵字 @Html.TextBox("txtKeyword") <input type="submit" name="" value="查詢" />
+            }
+        </div>
+        <p><a href="~/Customer/Create">新增客戶資料</a></p>
+        <table border="1" class="table table-dark table-striped align-middle">
+            <tr>
+                <td>序號</td>
+                <td>姓名</td>
+                <td>電話</td>
+                <td>電子郵件</td>
+                <td>地址</td>
+                <td>密碼</td>
+                <td>修改</td>
+                <td>刪除</td>
+            </tr>
+            @{
+                int count = 0;
+                foreach (CCustomer c in Model)
+                {
+                    count++;
+                    <tr>
+                        <td>@c.fId</td>
+                        <td>@c.fName</td>
+                        <td>@c.fPhone</td>
+                        <td>@c.fEmail</td>
+                        <td>@c.fAddress</td>
+                        <td>@c.fPassword</td>
+                        @*<td><a href="~/Customer/Delete/@c.fId">刪除</a></td>*@
+                        <td>@Html.ActionLink("修改","Edit", "Customer", new {id = c.fId},
+                           new
+                           {
+                               Class="btn btn-primary"
+                           })
+                        </td>
+                        <td>@Html.ActionLink("刪除","Delete", "Customer", new {id = c.fId},
+                           new {
+                               onClick="return confirm('確定要刪除嗎?')",
+                               Class="btn btn-danger"})
+                        </td>                    
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+</body>
+</html>

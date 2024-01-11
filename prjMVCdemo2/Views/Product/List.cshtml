@@ -1,0 +1,67 @@
+﻿@model IEnumerable<prjMVCdemo2.tProduct>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+
+<p>
+    @Html.ActionLink("產品資訊", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            序號
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fName)
+        </th>
+        <th>
+            圖片
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fQty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fImagePath)
+        </th>
+        <th></th>
+    </tr>
+
+@{ 
+    int count = 0;
+    foreach (var item in Model)
+    {
+        count++;
+        <tr>
+            <td>
+                @count
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fName)
+            </td>
+            <td>
+                <img src="~/Images/@item.fImagePath" alt="Alternate Text" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fQty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fImagePath)
+            </td>
+            <td>
+                @Html.ActionLink("修改", "Edit", "Product", new { id = item.fId }, null)
+                @Html.ActionLink("刪除", "Delete", "Product", new { id = item.fId }, new { onClick="return confirm('確定要刪除嗎?')"} )
+            </td>
+        </tr>
+        }
+    }
+
+</table>
